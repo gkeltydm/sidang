@@ -7,6 +7,7 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
 import time
 from collections import Counter
+from pathlib import Path
 
 # ─────────────────────────────────────────────
 # KONFIGURASI HALAMAN
@@ -172,7 +173,8 @@ section[data-testid="stSidebar"] .block-container { padding-top: 2rem; }
 # ─────────────────────────────────────────────
 @st.cache_resource(show_spinner=False)
 def load_model():
-    return YOLO('runs/detect/runs/detect/kopi_yolo_test3/weights/best.pt')
+    model_path = Path(__file__).parent / "best.pt"
+    return YOLO(str(model_path))
 
 
 # ─────────────────────────────────────────────
